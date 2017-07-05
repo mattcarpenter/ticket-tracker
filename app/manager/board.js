@@ -6,5 +6,5 @@ module.exports = {
 
 function updateFromImage(imageBuffer) {
   var tags = ticketTag.extractFromImage(imageBuffer);
-
+  return tags; 
 }

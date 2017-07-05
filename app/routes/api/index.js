@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const boardManager = require('../../manager/board');
 const Busboy = require('busboy');
+const fs = require('fs');
 
 router.post('/board', function(req, res) {
   var busboy = new Busboy({ headers: req.headers });
@@ -12,15 +13,16 @@ router.post('/board', function(req, res) {
     });
     file.on('end', function () {
       var imageBuffer = Buffer.concat(buffers);
-      boardManager.updateFromImage(imageBuffer);
-      res.send('done');
+      var tags = boardManager.updateFromImage(imageBuffer);
+      res.header('Content-Type', 'image/jpeg');
+      res.end(tags[0].data, 'binary');
     });
   });
   req.pipe(busboy);
 });
 
 router.get('/board', function (req, res) {
-  res.send('getting board');
+  res.send('hello');
 });
 
 module.exports = router;
