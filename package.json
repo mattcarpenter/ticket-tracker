@@ -9,6 +9,9 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "busboy": "^0.2.14",
+    "express": "^4.15.3",
+    "request": "^2.81.0",
     "ticket-tag": "git://github.com/mattcarpenter/ticket-tag.git"
   }
 }
